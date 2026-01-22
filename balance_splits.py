@@ -3,6 +3,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
 import terminatorlib.plugin as plugin
+from terminatorlib.config import Config
 from terminatorlib.factory import Factory
 from terminatorlib.plugin import KeyBindUtil
 from terminatorlib.terminator import Terminator
@@ -21,7 +22,8 @@ class BalanceSplitsPlugin(plugin.MenuItem):
 
     def __init__(self):
         plugin.MenuItem.__init__(self)
-        self.keyb = KeyBindUtil()
+        config = Config()
+        self.keyb = KeyBindUtil(config)
         self.keyb.bindkey_check_config(
             [PLUGIN_DESC_BALANCE, PLUGIN_ACT_BALANCE, PLUGIN_DEFAULT_KEY]
         )
